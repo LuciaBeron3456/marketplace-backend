@@ -1,0 +1,76 @@
+version: "3.8"
+
+services:
+  node-app:
+    build: .
+    environment:
+      - PUBLIC_URL=http://localhost:5173
+      - PORT=3000
+      - DB_USER=hfxokagp
+      - DB_PASSWORD=GIxb3Z1fWyL__ACzvHDBwt98xhYEdYyB
+      - DB_HOST=peanut.db.elephantsql.com
+      - DB_NAME=hfxokagp
+
+      - NODEMAILER_SMTP_EMAIL=no-responder-noprod@nacionservicios.com.ar
+      - NODEMAILER_SMTP_PASSWORD=Jueves20+
+      - NODEMAILER_SMTP_HOST=smtp.office365.com
+      - NODEMAILER_SMTP_PORT=587
+      - NODEMAILER_SMTP_ADMIN_EMAIL=no-responder-noprod@nacionservicios.com.ar
+      - NODEMAIL_SMTP_ADMIN_PASSWORD=Jueves20+
+
+      - AZURE_CLIENT_ID=c9e7c06f-b36f-4a4d-8912-3ab0202c0e23
+      - AZURE_CLIENT_SECRET=QCY8Q~ocqe7TmsIEQb5fprRxv0JtN0mzhggO6cNB
+      - AZURE_CALLBACK_URL=http://localhost:3000/openscience/api/v1/auth/microsoft/callback
+      - AZURE_AUTHORIZATION_URL=https://login.microsoftonline.com/55b0adbe-861e-4eb2-8543-50fd870667eb/oauth2/v2.0/authorize
+      - AZURE_TOKEN_URL=https://login.microsoftonline.com/55b0adbe-861e-4eb2-8543-50fd870667eb/oauth2/v2.0/token
+      - AZURE_WINDOW=http://localhost:5173
+
+      - GOOGLE_CLIENT_ID=164427320400-0miasgfb2q1t67t6n13riscaie7krmd5.apps.googleusercontent.com
+      - GOOGLE_CLIENT_SECRET=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
+      - GOOGLE_CALLBACK_URL=http://localhost:3000/openscience/api/v1/auth/google/callback
+      - GOOGLE_WINDOW=http://localhost:5173
+
+      - JWT_SECRET=key
+    ports:
+      - 3000:3000
+      - 3001:3001
+    networks:
+      - server-app
+    volumes:
+      - ./:/server
+      - /server/node_modules
+    depends_on:
+      - postgres
+    links:
+      - postgres
+
+  postgres:
+    image: postgres
+    environment:
+      - POSTGRES_DB=hfxokagp
+      - POSTGRES_USER=hfxokagp
+      - POSTGRES_PASSWORD=GIxb3Z1fWyL__ACzvHDBwt98xhYEdYyB
+    ports:
+      - 5432:5432
+    networks:
+      - server-app
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  pgadmin:
+    image: dpage/pgadmin4
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=marketplace@mail.com
+      - PGADMIN_DEFAULT_PASSWORD=marketplace
+    ports:
+      - 5050:80
+    networks:
+      - server-app
+
+networks:
+  server-app:
+    driver: bridge
+
+volumes:
+  postgres_data:
+    driver: local

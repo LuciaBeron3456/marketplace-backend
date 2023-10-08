@@ -1,0 +1,50 @@
+{
+  "author": "nicolascohen24",
+  "dependencies": {
+    "@faker-js/faker": "^8.1.0",
+    "@google-cloud/storage": "6.10.1",
+    "@hapi/boom": "10.0.1",
+    "axios": "1.4.0",
+    "cors": "2.8.5",
+    "dotenv": "16.0.3",
+    "exceljs": "4.3.0",
+    "express": "4.18.2",
+    "express-prom-bundle": "6.6.0",
+    "express-rate-limit": "6.7.0",
+    "jsonwebtoken": "9.0.0",
+    "jspdf": "2.5.1",
+    "jspdf-autotable": "3.5.29",
+    "moment": "2.29.4",
+    "moment-timezone": "0.5.43",
+    "morgan": "1.10.0",
+    "multer": "1.4.5-lts.1",
+    "node-cron": "3.0.2",
+    "node-schedule": "2.1.1",
+    "nodemailer": "6.9.2",
+    "passport": "0.6.0",
+    "passport-google-oauth20": "^2.0.0",
+    "passport-jwt": "4.0.1",
+    "passport-local": "1.0.0",
+    "passport-microsoft": "1.0.0",
+    "pg": "8.11.0",
+    "pg-hstore": "2.3.4",
+    "qs": "6.11.2",
+    "sequelize": "6.31.1",
+    "socket.io": "4.6.1",
+    "winston": "3.8.2",
+    "xlsx": "0.18.5"
+  },
+  "description": "server",
+  "devDependencies": {
+    "nodemon": "2.0.22",
+    "standard": "17.0.0"
+  },
+  "main": "index.js",
+  "name": "server",
+  "scripts": {
+    "dev": "NODE_ENV=development nodemon index.js",
+    "phoenix": "rm -rf ./node_modules && rm -f package-lock.json && npm install",
+    "start": "NODE_ENV=production node index.js"
+  },
+  "version": "1.0.0"
+}
