@@ -1,5 +1,5 @@
 {
-  "author": "nicolascohen24",
+  "author": "astrohackers",
   "dependencies": {
     "@faker-js/faker": "^8.1.0",
     "@google-cloud/storage": "6.10.1",
